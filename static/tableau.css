@@ -1,0 +1,166 @@
+:root {
+  --bleu-principal: #00acc1;
+  --bleu-secondaire: #4dd0e1;
+  --fond-clair: #e0f7fa;
+  --texte-principal: #004d40;
+  --fond-tableau-hover: #b2ebf2;
+  --en-tete: white;
+  --ombre: rgba(0, 0, 0, 0.1);
+  --ombre-forte: rgba(0, 0, 0, 0.2);
+}
+
+/* Base */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--fond-clair);
+  color: var(--texte-principal);
+}
+
+header {
+  background-color: var(--bleu-principal);
+  color: var(--en-tete);
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: 0 2px 5px var(--ombre-forte);
+}
+
+#logo {
+  width: 150px;
+  margin-right: 1300px;
+}
+
+main {
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #b2ebf2, var(--fond-clair));
+  min-height: 60vh;
+}
+
+/* Tableau */
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px var(--ombre);
+}
+
+thead th, tbody td {
+  width: calc(100% / 6);
+  padding: 0.75rem;
+  border: 1px solid #b2ebf2;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+thead th {
+  background-color: var(--bleu-principal);
+  color: white;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--fond-clair);
+}
+
+tbody tr:hover {
+  background-color: var(--fond-tableau-hover);
+}
+
+/* Tri des tableaux */
+.tri-container {
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.tri-form {
+  width: 100%;
+}
+
+.tri-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(200px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tri-button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: var(--bleu-principal);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.tri-button:hover {
+  background-color: var(--bleu-secondaire);
+  color: var(--texte-principal);
+}
+
+.tri-button.active {
+  background-color: #007c91;
+  color: white;
+}
+
+/* Cartes (si utilisées) */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #ffffffee;
+  color: var(--texte-principal);
+  border: 2px solid var(--bleu-principal);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 500px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 10px var(--ombre);
+}
+
+.card h2 {
+  margin-bottom: 0.8rem;
+  color: #006064;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #00796b;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: var(--fond-clair);
+  box-shadow: 0 12px 20px var(--ombre-forte);
+}
+
+/* Footer */
+footer {
+  background-color: var(--bleu-principal);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Tooltips (si map utilisée ailleurs) */
+.leaflet-tooltip {
+  background-color: white;
+  border: 1px solid #70c5fa;
+  color: #222;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+

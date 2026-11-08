@@ -1,0 +1,153 @@
+/*enleve les marges en bas du footer et au dessus d'index*/
+* {
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+}
+/*enleve les marges en bas du footer*/
+main {
+  flex: 1;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #eef3f0;
+}
+
+header {
+  position: relative;    
+  background-color: #6ca5f6;
+  height: 150px;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #dee1e3;
+  text-align: center;
+}
+  
+td{
+  text-align:center;
+}
+
+#logo {
+  position: absolute;
+  top: -15%;                     
+  left: 40px;                   
+  width: 200px;                 
+}
+
+.navbar {
+  background-color: #0097a7;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 32px;   /* 2rem → 32px */
+}
+
+
+main {
+  padding: 32px;   /* 2rem → 32px */
+  background: linear-gradient(to bottom right, #416492, #3083f6);
+  min-height: 60vh;
+}
+
+/* Cartes dans le main */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;      /* 2rem → 32px */
+  padding: 32px;  /* 2rem → 32px */
+}
+
+.card {
+  background-color: #ffffffee;
+  color: #f7fbfa;
+  border: 2px solid #111212;
+  border-radius: 16px;  /* 1rem → 16px */
+  padding: 32px;        /* 2rem → 32px */
+  width: 500px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 12.8px;  /* 0.8rem → 0.8×16 = 12.8px */
+  color: #131717;
+}
+
+.card p {
+  font-size: 15.2px;  /* 0.95rem → 0.95×16 = 15.2px */
+  color: #0e1011;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #bacde2;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+  .departement {
+    stroke: #444;
+    stroke-width: 0.5;
+    fill: #8dc7ea;
+    transition: fill 0.2s ease;
+  }
+
+  .departement:hover {
+    fill: #ffffff !important;
+    cursor: pointer;
+  }
+
+  .region {
+    pointer-events: all;
+  }
+
+
+footer {
+  color: #eceeee;
+  background-color: #6ca5f6;
+  text-align: center;
+  padding: 10px;
+  margin: 0px;
+}
+
+#map {
+  position: relative;
+}
+
+/* Apparence des bulles de nom de commune */
+.leaflet-tooltip {
+  background-color: white;
+  border: 1px solid #70c5fa;
+  color: #222;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#commune-container {
+  position: absolute;
+  top: 200px;       
+  right: 160px;     
+  background:(240, 242, 243, 0.9);
+  background-color: #8dc7ea;
+  padding: 8px 16px;  
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

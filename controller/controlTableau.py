@@ -1,40 +1,35 @@
 from flask import Blueprint, request, render_template
-from model.modeleTableau import FiltreColonnes
 
-tableau_bp = Blueprint('tableau', __name__)
+from model.modeleTableau import FiltreColonnes, HubEauIndisponible
 
-@tableau_bp.route("/tableau", methods=["GET"])
+
+tableau_bp = Blueprint("tableau", __name__)
+TRIS = {
+    "1": ("code_prelevement", False),
+    "2": ("code_prelevement", True),
+    "3": ("date_prelevement", False),
+    "4": ("date_prelevement", True),
+    "5": ("nom_installation_amont", False),
+    "6": ("nom_installation_amont", True),
+    "7": ("libelle_parametre", False),
+    "8": ("libelle_parametre", True),
+    "9": ("nom_departement", False),
+    "10": ("nom_departement", True),
+    "11": ("nom_commune", False),
+    "12": ("nom_commune", True),
+}
+
+
+@tableau_bp.get("/tableau")
 def afficher_tableau():
-    tri = request.args.get("tri", default="1", type=str)
+    tri = request.args.get("tri", "1")
+    if tri not in TRIS:
+        tri = "1"
 
     filtre = FiltreColonnes()
+    try:
+        filtre.trier(*TRIS[tri])
+    except HubEauIndisponible:
+        return render_template("tableau.html", tri=tri, indisponible=True), 503
 
-    if tri == "1":
-        filtre.premiers_par_code_prelevement()
-    elif tri == "2":
-        filtre.derniers_par_code_prelevement()
-    elif tri == "3":
-        filtre.premiers_par_date()
-    elif tri == "4":
-        filtre.derniers_par_date()
-    elif tri == "5":
-        filtre.premiers_par_nom_installation()
-    elif tri == "6":
-        filtre.derniers_par_nom_installation()
-    elif tri == "7":
-        filtre.premiers_par_parametre()
-    elif tri == "8":
-        filtre.derniers_par_parametre()
-    elif tri == "9":
-        filtre.premiers_par_departement()
-    elif tri == "10":
-        filtre.derniers_par_departement()
-    elif tri == "11":
-        filtre.premiers_par_commune()
-    elif tri == "12":
-        filtre.derniers_par_commune()
-    else:
-        filtre.premiers_par_code_prelevement()  # tri par défaut
-
-    tableau = filtre.afficher_tableau()
-    return render_template("tableau.html", tableau=tableau)
+    return render_template("tableau.html", tri=tri, tableau=filtre.afficher_tableau())

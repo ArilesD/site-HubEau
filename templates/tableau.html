@@ -3,105 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tableaux</title>
+  <title>Analyses de l’eau potable - Hub’Eau</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='tableau.css') }}">
-  <style>
-
-  </style>
 </head>
 <body>
-
 <header>
   <a href="{{ url_for('index') }}">
-    <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Accueil">
   </a>
-  <h1>Tableau</h1>
+  <h1>Analyses de l’eau potable</h1>
 </header>
 
 <main>
- <div class="tri-container">
-  <form method="get" action="{{ url_for('tableau.afficher_tableau') }}" class="tri-form">
-    <div class="tri-grid">
-
-      <!-- Colonne 1 : Code prélèvement -->
-      <div>
-        <input type="text" name="code_prelevement" placeholder="Rechercher code" class="search-input" value="{{ request.args.get('code_prelevement', '') }}">
-        <button type="submit" name="tri" value="1" class="tri-button {% if request.args.get('tri', '3') == '1' %}active{% endif %}">↑ Code prélèvement</button>
-        <button type="submit" name="tri" value="2" class="tri-button {% if request.args.get('tri', '3') == '2' %}active{% endif %}">↓ Code prélèvement</button>
-      </div>
-
-      <!-- Colonne 2 : Date -->
-      <div>
-        <input type="text" name="date" placeholder="Rechercher date" class="search-input" value="{{ request.args.get('date', '') }}">
-        <button type="submit" name="tri" value="3" class="tri-button {% if request.args.get('tri', '3') == '3' %}active{% endif %}">↑ Date</button>
-        <button type="submit" name="tri" value="4" class="tri-button {% if request.args.get('tri', '3') == '4' %}active{% endif %}">↓ Date</button>
-      </div>
-
-      <!-- Colonne 3 : Installation -->
-      <div>
-        <input type="text" name="installation" placeholder="Rechercher installation" class="search-input" value="{{ request.args.get('installation', '') }}">
-        <button type="submit" name="tri" value="5" class="tri-button {% if request.args.get('tri', '3') == '5' %}active{% endif %}">↑ Installation</button>
-        <button type="submit" name="tri" value="6" class="tri-button {% if request.args.get('tri', '3') == '6' %}active{% endif %}">↓ Installation</button>
-      </div>
-
-      <!-- Colonne 4 : Paramètre -->
-      <div>
-        <input type="text" name="parametre" placeholder="Rechercher paramètre" class="search-input" value="{{ request.args.get('parametre', '') }}">
-        <button type="submit" name="tri" value="7" class="tri-button {% if request.args.get('tri', '3') == '7' %}active{% endif %}">↑ Paramètre</button>
-        <button type="submit" name="tri" value="8" class="tri-button {% if request.args.get('tri', '3') == '8' %}active{% endif %}">↓ Paramètre</button>
-      </div>
-
-      <!-- Colonne 5 : Département -->
-      <div>
-        <input type="text" name="departement" placeholder="Rechercher département" class="search-input" value="{{ request.args.get('departement', '') }}">
-        <button type="submit" name="tri" value="9" class="tri-button {% if request.args.get('tri', '3') == '9' %}active{% endif %}">↑ Département</button>
-        <button type="submit" name="tri" value="10" class="tri-button {% if request.args.get('tri', '3') == '10' %}active{% endif %}">↓ Département</button>
-      </div>
-
-      <!-- Colonne 6 : Commune -->
-      <div>
-        <input type="text" name="commune" placeholder="Rechercher commune" class="search-input" value="{{ request.args.get('commune', '') }}">
-        <button type="submit" name="tri" value="11" class="tri-button {% if request.args.get('tri', '3') == '11' %}active{% endif %}">↑ Commune</button>
-        <button type="submit" name="tri" value="12" class="tri-button {% if request.args.get('tri', '3') == '12' %}active{% endif %}">↓ Commune</button>
-      </div>
-
-    </div>
-  </form>
-</div>
-
-
-
-
-
-
-  <table>
-    <thead>
-      <tr>
-        {% for col in tableau.keys() %}
-          <th>{{ col }}</th>
-        {% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in range(tableau["Code prelevement"]|length) %}
-        <tr>
-          {% for col in tableau.keys() %}
-            <td>{{ tableau[col][i] }}</td>
+  {% if indisponible %}
+    <section class="etat-tableau" role="alert">
+      <h2>Le tableau est temporairement indisponible</h2>
+      <p>L’API Hub’Eau ne fournit pas de réponse exploitable pour le moment.</p>
+      <p>
+        <a href="{{ url_for('tableau.afficher_tableau', tri=tri) }}">Réessayer</a>
+        · <a href="{{ url_for('carte') }}">Ouvrir la carte des communes et réseaux</a>
+      </p>
+    </section>
+  {% else %}
+    <p>Le tableau affiche jusqu’à 50 analyses parmi les 1 000 résultats demandés à Hub’Eau.</p>
+    <div class="tri-container">
+      <form method="get" action="{{ url_for('tableau.afficher_tableau') }}" class="tri-form">
+        <div class="tri-grid">
+          {% for label, croissant, decroissant in [
+            ('Code prélèvement', '1', '2'), ('Date', '3', '4'),
+            ('Installation', '5', '6'), ('Paramètre', '7', '8'),
+            ('Département', '9', '10'), ('Commune', '11', '12')
+          ] %}
+            <div class="tri-group">
+              <button type="submit" name="tri" value="{{ croissant }}" class="tri-button{% if tri == croissant %} active{% endif %}" aria-pressed="{{ 'true' if tri == croissant else 'false' }}">↑ {{ label }}</button>
+              <button type="submit" name="tri" value="{{ decroissant }}" class="tri-button{% if tri == decroissant %} active{% endif %}" aria-pressed="{{ 'true' if tri == decroissant else 'false' }}">↓ {{ label }}</button>
+            </div>
           {% endfor %}
-        </tr>
-      {% endfor %}
-    </tbody>
+        </div>
+      </form>
+    </div>
 
-  </table>
+    {% if tableau["Code prélèvement"] %}
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              {% for col in tableau %}
+                <th scope="col">{{ col }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in range(tableau["Code prélèvement"]|length) %}
+              <tr>
+                {% for valeurs in tableau.values() %}
+                  {% set valeur = valeurs[i] %}
+                  <td>{{ '-' if valeur is none or valeur == '' else valeur }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="etat-tableau">Aucune analyse dans la réponse de Hub’Eau.</p>
+    {% endif %}
+  {% endif %}
 </main>
 
 <footer>
-  <p> 1 : faire une pagination, appuyer sur un bouton "scroll/descente" affiche les 25 prochaines lignes
-    2 : faire un bouton search qui modiefierait le string qui serait la requete http
-    3 : je fais quoi avec "none"?
-    4: mettre un texte descriptif dans l'intro
-  </p>
+  <a href="{{ url_for('documentation') }}">Documentation de l’API Hub’Eau</a>
 </footer>
-
 </body>
 </html>

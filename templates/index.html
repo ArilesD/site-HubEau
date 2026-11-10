@@ -3,40 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clair'Eau</title>
+  <title>Eau’Clair de la Lune - Hub’Eau</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='indexcss.css') }}">
 </head>
 <body>
 
   <header>
-    <h1>Bienvenue</h1>
-    <a href= "{{ url_for('index') }}" ><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+    <h1>Eau’Clair de la Lune</h1>
+    <a href="{{ url_for('index') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Accueil"></a>
   </header>
 
   <main>
     <section>
-    <h2>Présentation</h2>
-      <p1>
-         Eau'Clair de la Lune est une plateforme web interactive qui permet de suivre la qualité de l’eau potable en France.
-Elle exploite les données de l’API Hub’Eau pour afficher des informations fiables et à jour sur les points de prélèvement, les paramètres analysés et les zones de distribution.
-Grâce à une interface simple et visuelle, les utilisateurs peuvent consulter les résultats des analyses, explorer les réseaux et mieux comprendre la gestion de l’eau sur leur territoire.
-      </p1>
+      <h2>Explorer les données sur l’eau potable</h2>
+      <p>Ce projet universitaire affiche un aperçu des analyses publiées par Hub’Eau et permet de consulter les réseaux d’eau desservant les communes d’une base locale.</p>
     </section>
     <section class="card-container">
       <a href="{{ url_for('tableau.afficher_tableau') }}" class="card">
-        <h2>Données</h2>
-        <p>Consulter différents tableaux sur les données</p>
+        <h2>Tableau des analyses</h2>
+        <p>Consulter et trier les résultats de l’API Hub’Eau.</p>
       </a>
       <a href="{{ url_for('carte') }}" class="card">
         <h2>Carte de France</h2>
-        <p>Qualité de l'eau à travers la France</p>
+        <p>Explorer les communes et les réseaux d’eau qui les desservent.</p>
       </a>
     </section>
   </main>
 
   <footer>
-    <p>mettre ici contacts, github (on mettra la version finalisé sur github) et lien vers l'api</p>
-  </footer>     
+    <p><a href="https://github.com/ArilesD/site-HubEau">Code source</a> · <a href="{{ url_for('documentation') }}">Documentation Hub’Eau</a></p>
+  </footer>
 
 </body>
 </html>

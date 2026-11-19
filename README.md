@@ -6,7 +6,7 @@
 2. Dans l’Explorateur Windows, fais **Extraire tout**, puis ouvre le dossier extrait.
 3. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**. Double-clique ensuite sur **LANCER.cmd**.
 
-Le lancement prépare la base des communes et réseaux depuis l’archive du projet. Dans **Carte de France**, sélectionne un département puis une commune. Le tableau des analyses appelle l’API Hub’Eau et nécessite Internet.
+La base des communes et réseaux est directement fournie dans le dossier data. Dans **Carte de France**, sélectionne un département puis une commune. Le tableau des analyses appelle l’API Hub’Eau et nécessite Internet.
 
 Garde la fenêtre de lancement ouverte pendant l’utilisation. Appuie sur **Entrée** dans cette fenêtre pour arrêter le projet. La première préparation des applications Python installe les bibliothèques depuis Internet. Les ouvertures suivantes réutilisent l’installation du dossier.
 
@@ -43,7 +43,6 @@ Utilise Python 3.12 ou 3.14 et exécute les commandes depuis la racine du dépô
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe prepare_data.py
 .\.venv\Scripts\python.exe -m flask --app app run
 ```
 
@@ -53,11 +52,10 @@ python -m venv .venv
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python prepare_data.py
 python -m flask --app app run
 ```
 
-Ouvre [http://127.0.0.1:5000](http://127.0.0.1:5000). La commande de préparation récupère la base locale et le logo depuis `site-HubEau.zip`, qui contient l’état d’origine du projet.
+Ouvre [http://127.0.0.1:5000](http://127.0.0.1:5000). La base SQLite et le logo sont fournis dans les dossiers data et static/images.
 
 ## Lire le code
 

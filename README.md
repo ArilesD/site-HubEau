@@ -1,5 +1,18 @@
 # Hub’Eau - Exploration des données sur l’eau potable
 
+Projet universitaire réalisé en équipe. Cette application Flask propose deux parcours pour explorer les données publiques sur l’eau potable en France.
+
+- **Carte** - Sélectionner un département, afficher ses communes puis consulter les réseaux d’eau associés. Cette vue s’appuie sur une base SQLite locale.
+- **Tableau** - Consulter les résultats d’analyses et trier les lignes par date, lieu ou paramètre. Le site demande jusqu’à 1 000 résultats et affiche les 50 premiers après le tri. Cette vue nécessite une connexion Internet. [Documentation de l’API Hub’Eau](https://hubeau.eaufrance.fr/page/api-qualite-eau-potable)
+
+## Aperçu du projet
+
+![Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil. Le tableau des analyses utilise séparément l’API en ligne.](docs/presentation.gif)
+
+Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil. Le tableau des analyses utilise séparément l’API en ligne.
+
+[Voir la vidéo en grand format](docs/presentation.mp4) · [Mon parcours et mes autres projets](https://github.com/ArilesD)
+
 ## Télécharger et lancer
 
 1. [Télécharge le ZIP complet](https://github.com/ArilesD/site-HubEau/archive/refs/heads/main.zip).
@@ -12,10 +25,6 @@ Garde la fenêtre de lancement ouverte pendant l’utilisation. Appuie sur **Ent
 
 Sous macOS ou Linux avec Python 3.12 à 3.14, ouvre un terminal dans le dossier extrait et exécute **python3 lancer.py**.
 
-Projet universitaire réalisé en équipe. Cette application Flask propose deux parcours pour explorer les données publiques sur l’eau potable en France.
-
-- **Carte** - Sélectionner un département, afficher ses communes puis consulter les réseaux d’eau associés. Cette vue s’appuie sur une base SQLite locale.
-- **Tableau** - Consulter les résultats d’analyses et trier les lignes par date, lieu ou paramètre. Le site demande jusqu’à 1 000 résultats et affiche les 50 premiers après le tri. Cette vue nécessite une connexion Internet. [Documentation de l’API Hub’Eau](https://hubeau.eaufrance.fr/page/api-qualite-eau-potable)
 
 ## De l’API au tableau
 

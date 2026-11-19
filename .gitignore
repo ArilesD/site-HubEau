@@ -2,3 +2,4 @@
 __pycache__/
 data/json_tres_potable.db
 static/images/logo.png
+.local/

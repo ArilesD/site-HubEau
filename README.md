@@ -1,5 +1,17 @@
 # Hub’Eau - Exploration des données sur l’eau potable
 
+## Télécharger et lancer
+
+1. [Télécharge le ZIP complet](https://github.com/ArilesD/site-HubEau/archive/refs/heads/main.zip).
+2. Dans l’Explorateur Windows, fais **Extraire tout**, puis ouvre le dossier extrait.
+3. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**. Double-clique ensuite sur **LANCER.cmd**.
+
+Le lancement prépare la base des communes et réseaux depuis l’archive du projet. Dans **Carte de France**, sélectionne un département puis une commune. Le tableau des analyses appelle l’API Hub’Eau et nécessite Internet.
+
+Garde la fenêtre de lancement ouverte pendant l’utilisation. Appuie sur **Entrée** dans cette fenêtre pour arrêter le projet. La première préparation des applications Python installe les bibliothèques depuis Internet. Les ouvertures suivantes réutilisent l’installation du dossier.
+
+Sous macOS ou Linux avec Python 3.12 à 3.14, ouvre un terminal dans le dossier extrait et exécute **python3 lancer.py**.
+
 Projet universitaire réalisé en équipe. Cette application Flask propose deux parcours pour explorer les données publiques sur l’eau potable en France.
 
 - **Carte** - Sélectionner un département, afficher ses communes puis consulter les réseaux d’eau associés. Cette vue s’appuie sur une base SQLite locale.

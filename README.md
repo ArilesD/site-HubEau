@@ -1,47 +1,48 @@
 # Hub’Eau - Exploration des données sur l’eau potable
 
-Projet universitaire réalisé en équipe. Cette application Flask propose deux parcours pour explorer les données publiques sur l’eau potable en France.
+Projet universitaire réalisé en équipe. Cette application propose deux vues :
 
-- **Carte** - Sélectionner un département, afficher ses communes puis consulter les réseaux d’eau associés. Cette vue s’appuie sur une base SQLite locale.
-- **Tableau** - Consulter les résultats d’analyses et trier les lignes par date, lieu ou paramètre. Le site demande jusqu’à 1 000 résultats et affiche les 50 premiers après le tri. Cette vue nécessite une connexion Internet. [Documentation de l’API Hub’Eau](https://hubeau.eaufrance.fr/page/api-qualite-eau-potable)
+- **Carte** : choisir un département puis une commune pour consulter ses réseaux d’eau. Les données sont fournies dans une base SQLite locale.
+- **Tableau** : consulter les analyses de l’eau potable et trier les résultats par date, lieu ou paramètre grâce à l’API Hub’Eau.
+
+**Outils :** Python, Flask, SQLite et API REST.
 
 ## Aperçu du projet
 
-![Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil. Le tableau des analyses utilise séparément l’API en ligne.](docs/presentation.gif)
+![Sélection du Val-de-Marne puis des réseaux d’eau de Créteil.](docs/presentation.gif)
 
-Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil. Le tableau des analyses utilise séparément l’API en ligne.
+L’aperçu montre la carte locale. Le tableau des analyses utilise séparément l’API en ligne.
 
-[Voir la capture en grand format](docs/apercu.png) · [Voir la vidéo en grand format](docs/presentation.mp4) · [Mon parcours et mes autres projets](https://github.com/ArilesD)
+[Image en grand format](docs/apercu.png) · [Voir la vidéo](docs/presentation.mp4)
 
 ## Télécharger et lancer
 
-1. [Télécharge le ZIP complet](https://github.com/ArilesD/site-HubEau/archive/refs/heads/main.zip).
-2. Dans l’Explorateur de fichiers, fais **Extraire tout**, puis ouvre le dossier extrait.
-3. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**. Double-clique ensuite sur **LANCER.cmd**.
+1. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**.
+2. [Télécharge le projet en ZIP](https://github.com/ArilesD/site-HubEau/archive/refs/heads/main.zip), fais **Extraire tout**, puis ouvre le dossier extrait.
+3. Double-clique sur **LANCER.cmd**.
 
-La base des communes et réseaux est directement fournie dans le dossier data. Dans **Carte de France**, sélectionne un département puis une commune. Le tableau des analyses appelle l’API Hub’Eau et nécessite Internet.
+Le premier lancement nécessite Internet pour installer les bibliothèques. Garde la fenêtre de lancement ouverte pendant l’utilisation et appuie sur **Entrée** dans cette fenêtre pour arrêter le projet.
 
-Garde la fenêtre de lancement ouverte pendant l’utilisation. Appuie sur **Entrée** dans cette fenêtre pour arrêter le projet. La première préparation des applications Python installe les bibliothèques depuis Internet. Les ouvertures suivantes réutilisent l’installation du dossier.
+Dans **Carte de France**, sélectionne un département puis une commune. La base est fournie dans `data/`.
 
+Le tableau des analyses nécessite Internet et dépend de la disponibilité de l’API. Il demande jusqu’à 1 000 résultats et affiche les 50 premiers après le tri. Si l’API est indisponible, la carte locale reste utilisable.
 
-## De l’API au tableau
+## Comprendre les fichiers
 
-Chaque ligne part d’un résultat d’analyse de `resultats_dis`. Le site reprend le paramètre, la commune et les réseaux de distribution. Il conserve le résultat textuel, par exemple « <1 », et ajoute son unité lorsqu’elle s’applique.
-
-| Champ dans la réponse JSON | Affichage pour le prélèvement `06200301829` |
+| Fichier ou dossier | Rôle |
 | --- | --- |
-| `nom_commune` | BILLY-MONTIGNY |
-| `libelle_parametre` | Escherichia coli /100ml - MF |
-| `resultat_alphanumerique` et `libelle_unite` | <1 n/(100mL) |
-| `reseaux[].nom` | ESTEVELLES, NOYELLES SOUS LENS |
+| `LANCER.cmd` et `lancer.py` | Préparent et démarrent l’application. |
+| `app.py` | Point d’entrée de l’application. |
+| `controller/` | Pages de la carte et du tableau. |
+| `model/` | Requêtes SQLite et récupération des données de l’API. |
+| `templates/` et `static/` | Pages HTML, styles et images. |
 
-Cet exemple provient d’un prélèvement du 31 août 2026. La réponse en direct peut évoluer. [Endpoint Hub’Eau](https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?size=2)
+[Documentation de l’API Hub’Eau](https://hubeau.eaufrance.fr/page/api-qualite-eau-potable) · [Exemple du tableau des analyses](docs/tableau-hubeau.jpg)
 
-![Tableau Hub’Eau trié par date, avec le prélèvement 06200301829](docs/tableau-hubeau.jpg)
+<details>
+<summary>Lancer depuis le code</summary>
 
-Si l’API est indisponible, le tableau propose de réessayer ou d’ouvrir la carte des communes et réseaux. La carte consulte la base SQLite fournie avec le projet.
-
-## Démarrer en local
+### Lancement manuel
 
 Utilise Python 3.12 ou 3.14 et exécute les commandes depuis la racine du dépôt.
 
@@ -55,11 +56,4 @@ python -m venv .venv
 
 Ouvre [http://127.0.0.1:5000](http://127.0.0.1:5000). La base SQLite et le logo sont fournis dans les dossiers data et static/images.
 
-## Lire le code
-
-| Fichier ou dossier | Rôle |
-| --- | --- |
-| `app.py` | Point d’entrée Flask. |
-| `controller/` | Routes de la carte et du tableau. |
-| `model/` | Requêtes SQLite et récupération des analyses Hub’Eau. |
-| `templates/` et `static/` | Pages HTML et styles. |
+</details>

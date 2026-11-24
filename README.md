@@ -38,22 +38,3 @@ Le tableau des analyses nécessite Internet et dépend de la disponibilité de l
 | `templates/` et `static/` | Pages HTML, styles et images. |
 
 [Documentation de l’API Hub’Eau](https://hubeau.eaufrance.fr/page/api-qualite-eau-potable) · [Exemple du tableau des analyses](docs/tableau-hubeau.jpg)
-
-<details>
-<summary>Lancer depuis le code</summary>
-
-### Lancement manuel
-
-Utilise Python 3.12 ou 3.14 et exécute les commandes depuis la racine du dépôt.
-
-**PowerShell**
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m flask --app app run
-```
-
-Ouvre [http://127.0.0.1:5000](http://127.0.0.1:5000). La base SQLite et le logo sont fournis dans les dossiers data et static/images.
-
-</details>

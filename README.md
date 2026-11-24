@@ -11,7 +11,7 @@ Projet universitaire réalisé en équipe. Cette application Flask propose deux 
 
 Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil. Le tableau des analyses utilise séparément l’API en ligne.
 
-[Voir la vidéo en grand format](docs/presentation.mp4) · [Mon parcours et mes autres projets](https://github.com/ArilesD)
+[Voir la capture en grand format](docs/apercu.png) · [Voir la vidéo en grand format](docs/presentation.mp4) · [Mon parcours et mes autres projets](https://github.com/ArilesD)
 
 ## Télécharger et lancer
 

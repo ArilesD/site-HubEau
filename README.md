@@ -16,14 +16,12 @@ Carte locale : Val-de-Marne, communes puis réseaux de distribution de Créteil.
 ## Télécharger et lancer
 
 1. [Télécharge le ZIP complet](https://github.com/ArilesD/site-HubEau/archive/refs/heads/main.zip).
-2. Dans l’Explorateur Windows, fais **Extraire tout**, puis ouvre le dossier extrait.
+2. Dans l’Explorateur de fichiers, fais **Extraire tout**, puis ouvre le dossier extrait.
 3. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**. Double-clique ensuite sur **LANCER.cmd**.
 
 La base des communes et réseaux est directement fournie dans le dossier data. Dans **Carte de France**, sélectionne un département puis une commune. Le tableau des analyses appelle l’API Hub’Eau et nécessite Internet.
 
 Garde la fenêtre de lancement ouverte pendant l’utilisation. Appuie sur **Entrée** dans cette fenêtre pour arrêter le projet. La première préparation des applications Python installe les bibliothèques depuis Internet. Les ouvertures suivantes réutilisent l’installation du dossier.
-
-Sous macOS ou Linux avec Python 3.12 à 3.14, ouvre un terminal dans le dossier extrait et exécute **python3 lancer.py**.
 
 
 ## De l’API au tableau
@@ -47,21 +45,12 @@ Si l’API est indisponible, le tableau propose de réessayer ou d’ouvrir la c
 
 Utilise Python 3.12 ou 3.14 et exécute les commandes depuis la racine du dépôt.
 
-**Windows PowerShell**
+**PowerShell**
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m flask --app app run
-```
-
-**macOS ou Linux**
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m flask --app app run
 ```
 
 Ouvre [http://127.0.0.1:5000](http://127.0.0.1:5000). La base SQLite et le logo sont fournis dans les dossiers data et static/images.

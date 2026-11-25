@@ -25,7 +25,7 @@ Le premier lancement nécessite Internet pour installer les bibliothèques. Gard
 
 Dans **Carte de France**, sélectionne un département puis une commune. La base est fournie dans `data/`.
 
-Le tableau des analyses nécessite Internet et dépend de la disponibilité de l’API. Il demande jusqu’à 1 000 résultats et affiche les 50 premiers après le tri. Si l’API est indisponible, la carte locale reste utilisable.
+Le tableau des analyses nécessite une connexion Internet.
 
 ## Comprendre les fichiers
 

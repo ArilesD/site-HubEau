@@ -13,8 +13,6 @@ Projet universitaire réalisé en équipe. Cette application propose deux vues :
 
 L’aperçu montre la carte locale. Le tableau des analyses utilise séparément l’API en ligne.
 
-[Image en grand format](docs/apercu.png) · [Voir la vidéo](docs/presentation.mp4)
-
 ## Télécharger et lancer
 
 1. Installe [Python 3.14](https://www.python.org/downloads/) si besoin, en cochant **Add python.exe to PATH**.
